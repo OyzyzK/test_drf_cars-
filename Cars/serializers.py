@@ -11,6 +11,5 @@ class CountryItemSerializer(ModelSerializer):
     class Meta:
         model = CountryItem
         fields = [
-            'country',
             'name'
         ]
