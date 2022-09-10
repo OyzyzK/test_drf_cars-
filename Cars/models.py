@@ -6,14 +6,15 @@ from django.core.validators import EmailValidator
 class CountryItem(models.Model):
     objects = models.Manager()
 
+
     class Meta:
         verbose_name = 'Страна'
         verbose_name_plural = 'Страны'
 
-    name = models.CharField(max_length=50, verbose_name='Название страны', unique=True)
+    country = models.CharField(max_length=50, verbose_name='Название страны', unique=True)
 
     def __str__(self):
-        return f'Страна: {self.name}'
+        return f'Страна: {self.country}'
 
 
 class ProducerItem(models.Model):
@@ -23,12 +24,12 @@ class ProducerItem(models.Model):
         verbose_name = 'Производитель'
         verbose_name_plural = 'Производители'
 
-    name = models.CharField(max_length=50, verbose_name='Название производителя', unique=True)
+    name_p = models.CharField(max_length=50, verbose_name='Название производителя', unique=True)
     country = models.ForeignKey(CountryItem, verbose_name='Название страны', related_name='countries',
                                 on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Производитель: {self.name}'
+        return f'Производитель: {self.name_p}'
 
 
 class CarItem(models.Model):
