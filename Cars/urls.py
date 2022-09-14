@@ -19,5 +19,5 @@ urlpatterns = [
     path('cars/export/csv', exportcsv_cars, name='download-csv'),
     path('comments/export/', down_file_comments, name='download-xlsx'),
     path('comments/export/csv', exportcsv_comments, name='download-csv'),
-    * router.urls
+    *router.urls
 ]

@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'Cars',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,11 +49,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 REST_FRAMEWORK = {
-   'DEFAULT_PERMISSION_CLASSES': [
-   'rest_framework.permissions.AllowAny',
-  ]
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
 }
 
 ROOT_URLCONF = 'Cars_Review.urls'

@@ -213,7 +213,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return CommentItem.objects.all()
 
-
-
-
 # Create your views here.
