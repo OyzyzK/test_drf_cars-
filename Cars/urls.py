@@ -1,29 +1,23 @@
 from django.urls import path
-from .views import CountryGET, ProducerGET, CarsGET, create_country, CountriesUpadateView, CountriesDeleteView, \
-    index_country, \
-    index_producer, create_producer, ProducersUpadateView, ProducersDeleteView, index_car, create_car, index_comment, \
-    create_comment, CarsUpadateView, CarsDeleteView, CommentsUpadateView, CommentsDeleteView
+from rest_framework.routers import DefaultRouter
+from .views import down_file_countries, down_file_producers, down_file_cars, down_file_comments, \
+    exportcsv_countries, exportcsv_producers, exportcsv_cars, exportcsv_comments, ProducerViewSet, CommentViewSet, \
+    CarsViewSet, CountriesViewSet
+
+router = DefaultRouter()
+router.register(r'producers', ProducerViewSet, basename='producer')
+router.register(r'comments', CommentViewSet, basename='producer')
+router.register(r'cars', CarsViewSet, basename='cars')
+router.register(r'countries', CountriesViewSet, basename='producer')
 
 urlpatterns = [
-    path('countries/', CarsGET.as_view()),
-    path('countries/', index_country),
-    path('countries_create/', create_country),
-    path('countries/update/<int:pk>', CountriesUpadateView.as_view(), name = 'countries-update'),
-    path('countries/delete/<int:pk>', CountriesDeleteView.as_view(), name='countries-delete'),
-
-    path('producers/', index_producer),
-    path('producers_create/', create_producer),
-    path('producers/update/<int:pk>', ProducersUpadateView.as_view(), name='producers-update'),
-    path('producers/delete/<int:pk>', ProducersDeleteView.as_view(), name='producers-delete'),
-
-    path('cars/', index_car),
-    path('cars_create/', create_car),
-    path('cars/update/<int:pk>', CarsUpadateView.as_view(), name='cars-update'),
-    path('cars/delete/<int:pk>', CarsDeleteView.as_view(), name='cars-delete'),
-
-    path('comments/', index_comment),
-    path('comments_create/', create_comment),
-    path('comments/update/<int:pk>', CommentsUpadateView.as_view(), name='comments-update'),
-    path('comments/delete/<int:pk>', CommentsDeleteView.as_view(), name='comments-delete')
-
+    path('countries/export/', down_file_countries, name='download-xlsx'),
+    path('countries/export/csv', exportcsv_countries, name='download-csv'),
+    path('producers/export/', down_file_producers, name='download-xlsx'),
+    path('producers/export/csv', exportcsv_producers, name='download-csv'),
+    path('cars/export/', down_file_cars, name='download-xlsx'),
+    path('cars/export/csv', exportcsv_cars, name='download-csv'),
+    path('comments/export/', down_file_comments, name='download-xlsx'),
+    path('comments/export/csv', exportcsv_comments, name='download-csv'),
+    * router.urls
 ]

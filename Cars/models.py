@@ -27,7 +27,7 @@ class ProducerItem(models.Model):
         verbose_name_plural = 'Производители'
 
     name_producer = models.CharField(max_length=50, verbose_name='Название производителя', unique=True)
-    name_country = models.ForeignKey(CountryItem, verbose_name='Название страны', related_name='countries',
+    name_country = models.ForeignKey(CountryItem, verbose_name='Название страны', related_name='producers',
                                 on_delete=models.CASCADE)
 
     def get_absolute_url(self):
@@ -44,8 +44,7 @@ class CarItem(models.Model):
         verbose_name_plural = 'Машины'
 
     name_car = models.CharField(max_length=50, verbose_name='Название машины', unique=True)
-    name_producer = models.ForeignKey(ProducerItem, verbose_name='Имя производителя', related_name='producers',
-                                 on_delete=models.CASCADE)
+    name_producer = models.ForeignKey(ProducerItem, verbose_name='Имя производителя', related_name='cars',                      on_delete=models.CASCADE)
     year_start = models.DateField(verbose_name='Год начала выпуска')
     year_end = models.DateField(verbose_name='Год окончания выпуска')
 

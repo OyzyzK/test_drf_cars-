@@ -1,3 +1,5 @@
+from rest_framework.fields import SerializerMethodField
+
 from .models import CountryItem, ProducerItem, CarItem, CommentItem
 from django.forms import ModelForm
 
@@ -8,6 +10,8 @@ class CountryItemForm(ModelForm):
         model = CountryItem
         fields = ['name_country']
 
+    def get_name_producer(self):
+        pass
 class ProducerItemForm(ModelForm):
     class Meta:
         model = ProducerItem
